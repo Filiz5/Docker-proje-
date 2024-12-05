@@ -1,18 +1,18 @@
+# Import Flask modules
 from flask import Flask, jsonify, abort, request, make_response
 from flaskext.mysql import MySQL
-import os
 
+# Create an object named app 
 app = Flask(__name__)
 
-
-app.config['MYSQL_DATABASE_HOST'] = os.environ.get('MYSQL_HOST')
-app.config['MYSQL_DATABASE_USER'] = os.environ.get('MYSQL_USER')
-app.config['MYSQL_DATABASE_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
-app.config['MYSQL_DATABASE_DB'] = os.environ.get('MYSQL_DB')
+# Configure sqlite database
+app.config['MYSQL_DATABASE_HOST'] = 'database'
+app.config['MYSQL_DATABASE_USER'] = 'techproed'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'techpro1234'
+app.config['MYSQL_DATABASE_DB'] = 'bookstore_db'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql = MySQL()
 mysql.init_app(app)
-
 connection = mysql.connect()
 connection.autocommit(True)
 cursor = connection.cursor()
